@@ -1,5 +1,5 @@
 abstract class SplashEvent {}
 
-class RequestFactFromApi extends SplashEvent {}
+class FatchDataFromApi extends SplashEvent {}
 
 class RepeatRequestFactFromApi extends SplashEvent {}
