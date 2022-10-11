@@ -9,7 +9,7 @@ abstract class ApiServiceImage {
   factory ApiServiceImage(Dio dio, {String baseUrl}) = _ApiServiceImage;
 
   @GET('/images/search')
-  Future<ImageResponse> getImage();
+  Future<List<ImageResponse>> getImage();
 }
 
 @JsonSerializable()

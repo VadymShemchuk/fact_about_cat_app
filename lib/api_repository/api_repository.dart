@@ -12,10 +12,10 @@ class ApiRepository {
       final factResponse = await _apiServiceFact.getFact();
       final imageResponse = await _apiServiceImage.getImage();
 
-      if (factResponse.catsFact != null && imageResponse.imageUrl != null) {
+      if (factResponse.catsFact != null) {
         return FactModel(
           catsFact: factResponse.catsFact,
-          imageUrl: imageResponse.imageUrl,
+          imageUrl: imageResponse[0].imageUrl,
         );
       } else {
         return null;
@@ -34,6 +34,7 @@ class ApiRepositoryFailExeption implements Exception {
   ApiRepositoryFailExeption([this.message = 'An unknown exception occurred.']);
 
   factory ApiRepositoryFailExeption.copyWith(String? message) {
+    print(message);
     return ApiRepositoryFailExeption(message);
   }
 }
