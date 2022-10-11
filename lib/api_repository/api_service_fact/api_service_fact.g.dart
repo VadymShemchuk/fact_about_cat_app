@@ -7,7 +7,7 @@ part of 'api_service_fact.dart';
 // **************************************************************************
 
 FactResponse _$FactResponseFromJson(Map<String, dynamic> json) => FactResponse(
-      catsFact: json['fact'] as String,
+      catsFact: json['fact'] as String?,
       factLength: json['length'] as int,
     );
 

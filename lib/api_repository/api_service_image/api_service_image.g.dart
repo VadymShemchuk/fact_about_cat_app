@@ -9,7 +9,7 @@ part of 'api_service_image.dart';
 ImageResponse _$ImageResponseFromJson(Map<String, dynamic> json) =>
     ImageResponse(
       imageId: json['id'] as String,
-      imageUrl: json['url'] as String,
+      imageUrl: json['url'] as String?,
       imageWidth: json['width'] as int,
       imageHeight: json['height'] as int,
     );
@@ -41,13 +41,13 @@ class _ApiServiceImage implements ApiServiceImage {
   String? baseUrl;
 
   @override
-  Future<ImageResponse> getImage() async {
+  Future<List<ImageResponse>> getImage() async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<ImageResponse>(Options(
+        .fetch<List<dynamic>>(_setStreamType<List<ImageResponse>>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -59,7 +59,9 @@ class _ApiServiceImage implements ApiServiceImage {
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = ImageResponse.fromJson(_result.data!);
+    var value = _result.data!
+        .map((dynamic i) => ImageResponse.fromJson(i as Map<String, dynamic>))
+        .toList();
     return value;
   }
 

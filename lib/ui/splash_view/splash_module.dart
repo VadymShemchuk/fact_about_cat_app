@@ -11,23 +11,25 @@ class SplashModule extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => SplashBloc(
-        context.read(),
-      )..add(FatchDataFromApi()),
-      child: BlocConsumer<SplashBloc, SplashState>(
-        listener: (_, state) {
-          if (state is SuccessSplashState) {
-            print('Success');
-          } else if (state is FailureSplashState) {
-            print('Failure');
-          }
-        },
-        builder: (_, state) {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        },
+    return Scaffold(
+      body: BlocProvider(
+        create: (context) => SplashBloc(
+          context.read(),
+        )..add(FatchDataFromApi()),
+        child: BlocConsumer<SplashBloc, SplashState>(
+          listener: (_, state) {
+            if (state is SuccessSplashState) {
+              print('Success');
+            } else if (state is FailureSplashState) {
+              print('Failure');
+            }
+          },
+          builder: (_, state) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          },
+        ),
       ),
     );
   }
