@@ -18,6 +18,7 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
     FatchDataFromApi event,
     Emitter<SplashState> emit,
   ) async {
+    emit(LoadingSplashState());
     final model = await _apiRepository.fetchFactModel();
     if (model != null) {
       emit(SuccessSplashState());
