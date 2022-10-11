@@ -15,7 +15,7 @@ abstract class ApiServiceFact {
 @JsonSerializable()
 class FactResponse {
   @JsonKey(name: 'fact')
-  final String catsFact;
+  final String? catsFact;
   @JsonKey(name: 'length')
   final int factLength;
 

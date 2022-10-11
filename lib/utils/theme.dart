@@ -5,6 +5,6 @@ class AppTheme {
 
   static makeTheme() => ThemeData(
         primarySwatch: Colors.blue,
-        backgroundColor: Colors.white,
+        scaffoldBackgroundColor: Colors.white,
       );
 }

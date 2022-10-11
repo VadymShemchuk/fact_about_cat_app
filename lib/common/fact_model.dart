@@ -1,17 +1,17 @@
-class CatFactModel {
+class FactModel {
   final String? catsFact;
   final String? imageUrl;
 
-  CatFactModel({
+  FactModel({
     this.catsFact,
     this.imageUrl,
   });
 
-  factory CatFactModel.copyWith(
-    String? catsFact,
-    String? imageUrl,
+  factory FactModel.copyWith(
+    String catsFact,
+    String imageUrl,
   ) {
-    return CatFactModel(
+    return FactModel(
       catsFact: catsFact,
       imageUrl: imageUrl,
     );

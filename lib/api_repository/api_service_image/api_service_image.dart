@@ -17,7 +17,7 @@ class ImageResponse {
   @JsonKey(name: 'id')
   final String imageId;
   @JsonKey(name: 'url')
-  final String imageUrl;
+  final String? imageUrl;
   @JsonKey(name: 'width')
   final int imageWidth;
   @JsonKey(name: 'height')
