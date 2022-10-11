@@ -1,6 +1,6 @@
-# fact_about_cat
+# Fact about cat
 
-A new Flutter project.
+The Fact about cat App using REST API to show funny facts and images about cats.
 
 ## Getting Started
 
