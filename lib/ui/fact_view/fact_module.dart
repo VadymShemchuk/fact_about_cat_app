@@ -22,7 +22,6 @@ class FactModule extends StatelessWidget {
       child: BlocConsumer<FactBloc, FactState>(
         listener: (_, state) {
           if (state.navigatorStatus is OnListFacts) {
-            print('pushNamed(FactsListModule ${state.navigatorStatus}');
             Navigator.of(context).pushNamed(FactsListModule.route);
           }
         },

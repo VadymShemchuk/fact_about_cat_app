@@ -1,4 +1,3 @@
-import 'package:fact_about_cat/bloc/facts_list_bloc/facts_list_bloc.dart';
 import 'package:fact_about_cat/providers/providers.dart';
 import 'package:fact_about_cat/ui/fact_view/fact_module.dart';
 import 'package:fact_about_cat/ui/facts_list_view/facts_list_module.dart';

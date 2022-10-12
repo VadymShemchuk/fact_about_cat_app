@@ -14,14 +14,6 @@ ImageResponse _$ImageResponseFromJson(Map<String, dynamic> json) =>
       imageHeight: json['height'] as int,
     );
 
-Map<String, dynamic> _$ImageResponseToJson(ImageResponse instance) =>
-    <String, dynamic>{
-      'id': instance.imageId,
-      'url': instance.imageUrl,
-      'width': instance.imageWidth,
-      'height': instance.imageHeight,
-    };
-
 // **************************************************************************
 // RetrofitGenerator
 // **************************************************************************

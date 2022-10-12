@@ -35,7 +35,6 @@ class FactBloc extends Bloc<FactEvent, FactState> {
     FatchNewFact event,
     Emitter<FactState> emit,
   ) async {
-    print('fach new fact');
     emit(
       state.copyWith(
         loadingStatus: const Loading(),
@@ -60,7 +59,6 @@ class FactBloc extends Bloc<FactEvent, FactState> {
     OnListFactsView event,
     Emitter<FactState> emit,
   ) {
-    print('onListFactsView');
     emit(
       state.copyWith(
         navigatorStatus: OnListFacts(),

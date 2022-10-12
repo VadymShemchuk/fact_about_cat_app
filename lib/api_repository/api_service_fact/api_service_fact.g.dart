@@ -11,12 +11,6 @@ FactResponse _$FactResponseFromJson(Map<String, dynamic> json) => FactResponse(
       factLength: json['length'] as int,
     );
 
-Map<String, dynamic> _$FactResponseToJson(FactResponse instance) =>
-    <String, dynamic>{
-      'fact': instance.catsFact,
-      'length': instance.factLength,
-    };
-
 // **************************************************************************
 // RetrofitGenerator
 // **************************************************************************
