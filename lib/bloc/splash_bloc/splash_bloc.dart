@@ -1,11 +1,13 @@
 import 'package:fact_about_cat/api_repository/api_repository.dart';
 import 'package:fact_about_cat/bloc/splash_bloc/splash_event.dart';
 import 'package:fact_about_cat/bloc/splash_bloc/splash_state.dart';
+import 'package:fact_about_cat/common/facts_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SplashBloc extends Bloc<SplashEvent, SplashState> {
   SplashBloc(
     this._apiRepository,
+    this._factsRepository,
   ) : super(
           LoadingSplashState(),
         ) {
@@ -13,16 +15,19 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
   }
 
   final ApiRepository _apiRepository;
+  final FactsRepository _factsRepository;
 
   void fatchData(
     FatchDataFromApi event,
     Emitter<SplashState> emit,
   ) async {
-    final model = await _apiRepository.fetchFactModel();
-    if (model != null) {
+    emit(LoadingSplashState());
+    try {
+      final model = await _apiRepository.fetchFactModel();
+      _factsRepository.addNewFact(model);
       emit(SuccessSplashState());
-    } else {
-      emit(FailureSplashState());
+    } on ApiRepositoryFailExeption catch (e) {
+      emit(FailureSplashState(error: e.message));
     }
   }
 }

@@ -6,7 +6,10 @@ part 'api_service_fact.g.dart';
 
 @RestApi(baseUrl: 'https://catfact.ninja')
 abstract class ApiServiceFact {
-  factory ApiServiceFact(Dio dio, {String baseUrl}) = _ApiServiceFact;
+  factory ApiServiceFact(
+    Dio dio, {
+    String baseUrl,
+  }) = _ApiServiceFact;
 
   @GET('/fact')
   Future<FactResponse> getFact();
