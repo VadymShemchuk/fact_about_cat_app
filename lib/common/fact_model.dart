@@ -1,13 +1,22 @@
 import 'package:fact_about_cat/utils/random_date_generator.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
+part 'fact_model.g.dart';
+
+@HiveType(typeId: 1)
 class FactModel {
-  final String catsFact;
-  final String imageUrl;
+  @HiveField(0)
+  final String? catsFact;
+
+  @HiveField(1)
   String? date;
 
+  @HiveField(2)
+  final String? imageUrl;
+
   FactModel({
-    this.catsFact = '',
-    this.imageUrl = '',
+    this.catsFact,
+    this.imageUrl,
     this.date,
   });
 

@@ -1,15 +1,15 @@
-import 'package:fact_about_cat/api_repository/api_repository.dart';
 import 'package:fact_about_cat/bloc/fact_bloc/fact_event.dart';
 import 'package:fact_about_cat/bloc/fact_bloc/fact_state.dart';
 import 'package:fact_about_cat/bloc/loading_status.dart';
 import 'package:fact_about_cat/bloc/navigator_status.dart';
-import 'package:fact_about_cat/common/facts_repository.dart';
+import 'package:fact_about_cat/common/api_repository/api_repository.dart';
+import 'package:fact_about_cat/common/hive_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class FactBloc extends Bloc<FactEvent, FactState> {
   FactBloc(
     this._apiRepository,
-    this._factsRepository,
+    this._hiveRepository,
   ) : super(FactState()) {
     on<GetLoadedFact>(getLoadedFact);
     on<FatchNewFact>(fatchNewFact);
@@ -17,16 +17,18 @@ class FactBloc extends Bloc<FactEvent, FactState> {
   }
 
   final ApiRepository _apiRepository;
-  final FactsRepository _factsRepository;
+  final HiveRepository _hiveRepository;
 
   void getLoadedFact(
     GetLoadedFact event,
     Emitter<FactState> emit,
   ) {
+    final modelList = _hiveRepository.readData();
+    final modelItem = modelList.last;
     emit(state.copyWith(
-      imageUrl: _factsRepository.factModelList.last.imageUrl,
-      catsFact: _factsRepository.factModelList.last.catsFact,
-      date: _factsRepository.factModelList.last.date,
+      imageUrl: modelItem.imageUrl,
+      catsFact: modelItem.catsFact,
+      date: modelItem.date,
       loadingStatus: Loaded(),
     ));
   }
@@ -41,11 +43,11 @@ class FactBloc extends Bloc<FactEvent, FactState> {
       ),
     );
     final model = await _apiRepository.fetchFactModel();
-    final String imageUrl = model.imageUrl;
-    final String catsFact = model.catsFact;
+    final String imageUrl = model.imageUrl!;
+    final String catsFact = model.catsFact!;
     final String date = model.date!;
 
-    _factsRepository.addNewFact(model);
+    _hiveRepository.writeData(model);
 
     emit(state.copyWith(
       imageUrl: imageUrl,
