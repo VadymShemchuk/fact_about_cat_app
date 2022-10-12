@@ -2,6 +2,7 @@ import 'package:fact_about_cat/api_repository/api_repository.dart';
 import 'package:fact_about_cat/bloc/fact_bloc/fact_event.dart';
 import 'package:fact_about_cat/bloc/fact_bloc/fact_state.dart';
 import 'package:fact_about_cat/bloc/loading_status.dart';
+import 'package:fact_about_cat/bloc/navigator_status.dart';
 import 'package:fact_about_cat/common/facts_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -12,6 +13,7 @@ class FactBloc extends Bloc<FactEvent, FactState> {
   ) : super(FactState()) {
     on<GetLoadedFact>(getLoadedFact);
     on<FatchNewFact>(fatchNewFact);
+    on<OnListFactsView>(onListFactsView);
   }
 
   final ApiRepository _apiRepository;
@@ -25,7 +27,7 @@ class FactBloc extends Bloc<FactEvent, FactState> {
       imageUrl: _factsRepository.factModelList.last.imageUrl,
       catsFact: _factsRepository.factModelList.last.catsFact,
       date: _factsRepository.factModelList.last.date,
-      status: Loaded(),
+      loadingStatus: Loaded(),
     ));
   }
 
@@ -33,9 +35,10 @@ class FactBloc extends Bloc<FactEvent, FactState> {
     FatchNewFact event,
     Emitter<FactState> emit,
   ) async {
+    print('fach new fact');
     emit(
       state.copyWith(
-        status: const Loading(),
+        loadingStatus: const Loading(),
       ),
     );
     final model = await _apiRepository.fetchFactModel();
@@ -49,7 +52,24 @@ class FactBloc extends Bloc<FactEvent, FactState> {
       imageUrl: imageUrl,
       catsFact: catsFact,
       date: date,
-      status: Loaded(),
+      loadingStatus: Loaded(),
     ));
+  }
+
+  void onListFactsView(
+    OnListFactsView event,
+    Emitter<FactState> emit,
+  ) {
+    print('onListFactsView');
+    emit(
+      state.copyWith(
+        navigatorStatus: OnListFacts(),
+      ),
+    );
+    emit(
+      state.copyWith(
+        navigatorStatus: const InitialNavigatorStatus(),
+      ),
+    );
   }
 }

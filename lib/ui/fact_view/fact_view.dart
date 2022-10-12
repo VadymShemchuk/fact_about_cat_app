@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'package:fact_about_cat/bloc/fact_bloc/fact_bloc.dart';
 import 'package:fact_about_cat/bloc/fact_bloc/fact_event.dart';
 import 'package:fact_about_cat/bloc/fact_bloc/fact_state.dart';
@@ -19,11 +20,19 @@ class FactView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('A fact about cat!'),
+        centerTitle: true,
+        actions: [
+          IconButton(
+              onPressed: () => context.read<FactBloc>().add(OnListFactsView()),
+              icon: Transform(
+                  transform: Matrix4.rotationY(pi),
+                  child: const Icon(Icons.arrow_back_ios)))
+        ],
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          state.status is Loading
+          state.loadingStatus is Loading
               ? const SizedBox(
                   height: 300,
                   child: Center(child: CircularProgressIndicator()),

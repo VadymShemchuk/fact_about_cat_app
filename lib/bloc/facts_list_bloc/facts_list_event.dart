@@ -8,3 +8,5 @@ class DeleteFact extends FactsListEvent {
     required this.factIndex,
   });
 }
+
+class OnFactView extends FactsListEvent {}
