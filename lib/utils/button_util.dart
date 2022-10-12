@@ -5,9 +5,8 @@ class ButtonUtil {
 
   static Widget buildCommonButton(
     BuildContext context, {
-    double horizontalOffsets = 40,
     double borderRadius = 18,
-    double buttonHeight = 59,
+    double buttonHeight = 60,
     required void Function()? onPressed,
     required String buttonText,
   }) {

@@ -1,13 +1,13 @@
-import 'package:fact_about_cat/api_repository/api_repository.dart';
 import 'package:fact_about_cat/bloc/splash_bloc/splash_event.dart';
 import 'package:fact_about_cat/bloc/splash_bloc/splash_state.dart';
-import 'package:fact_about_cat/common/facts_repository.dart';
+import 'package:fact_about_cat/common/api_repository/api_repository.dart';
+import 'package:fact_about_cat/common/hive_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SplashBloc extends Bloc<SplashEvent, SplashState> {
   SplashBloc(
     this._apiRepository,
-    this._factsRepository,
+    this._hiveRepository,
   ) : super(
           LoadingSplashState(),
         ) {
@@ -15,7 +15,7 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
   }
 
   final ApiRepository _apiRepository;
-  final FactsRepository _factsRepository;
+  final HiveRepository _hiveRepository;
 
   void fatchData(
     FatchDataFromApi event,
@@ -23,9 +23,15 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
   ) async {
     emit(LoadingSplashState());
     try {
-      final model = await _apiRepository.fetchFactModel();
-      _factsRepository.addNewFact(model);
-      emit(SuccessSplashState());
+      final listModel = _hiveRepository.readData();
+
+      if (listModel.isNotEmpty) {
+        emit(SuccessSplashState());
+      } else {
+        final model = await _apiRepository.fetchFactModel();
+        _hiveRepository.writeData(model);
+        emit(SuccessSplashState());
+      }
     } on ApiRepositoryFailExeption catch (e) {
       emit(FailureSplashState(error: e.message));
     }

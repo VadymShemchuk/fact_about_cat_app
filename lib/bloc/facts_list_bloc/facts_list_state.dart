@@ -3,24 +3,27 @@ import 'package:fact_about_cat/bloc/navigator_status.dart';
 import 'package:fact_about_cat/common/fact_model.dart';
 
 class FactsListState {
-  List<FactModel> viewModel;
+  List<FactModel>? viewModel;
   LoadingStatus loadingStatus;
   NavigatorStatus navigatorStatus;
-  int get itemsCount => viewModel.length;
+  int? itemsCount;
 
   FactsListState({
-    this.viewModel = const [],
+    this.itemsCount,
+    this.viewModel,
     this.loadingStatus = const Loading(),
     this.navigatorStatus = const InitialNavigatorStatus(),
   });
 
   FactsListState copyWith({
-    List<FactModel>? viewModel,
+    List<FactModel>? newViewModel,
     LoadingStatus? loadingStatus,
     NavigatorStatus? navigatorStatus,
+    int? itemCount,
   }) {
     return FactsListState(
-      viewModel: viewModel ?? this.viewModel,
+      itemsCount: itemsCount,
+      viewModel: newViewModel ?? viewModel,
       loadingStatus: loadingStatus ?? this.loadingStatus,
       navigatorStatus: navigatorStatus ?? this.navigatorStatus,
     );

@@ -1,12 +1,18 @@
+import 'package:fact_about_cat/common/fact_model.dart';
 import 'package:fact_about_cat/providers/providers.dart';
 import 'package:fact_about_cat/ui/fact_view/fact_module.dart';
 import 'package:fact_about_cat/ui/facts_list_view/facts_list_module.dart';
 import 'package:fact_about_cat/ui/splash_view/splash_module.dart';
 import 'package:fact_about_cat/utils/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+void main() async {
+  await Hive.initFlutter();
+  Hive.registerAdapter(FactModelAdapter());
+  await Hive.openBox<FactModel>('factModel');
+
   runApp(const MyApp());
 }
 
