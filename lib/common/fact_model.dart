@@ -1,19 +1,25 @@
+import 'package:fact_about_cat/utils/random_date_generator.dart';
+
 class FactModel {
-  final String? catsFact;
-  final String? imageUrl;
+  final String catsFact;
+  final String imageUrl;
+  String? date;
 
   FactModel({
-    this.catsFact,
-    this.imageUrl,
+    this.catsFact = '',
+    this.imageUrl = '',
+    this.date,
   });
 
-  factory FactModel.copyWith(
-    String catsFact,
-    String imageUrl,
-  ) {
+  FactModel copyWith({
+    String? catsFact,
+    String? imageUrl,
+  }) {
+    final newDate = RandomDateUtil.generateRandomDate();
     return FactModel(
-      catsFact: catsFact,
-      imageUrl: imageUrl,
+      catsFact: catsFact ?? this.catsFact,
+      imageUrl: imageUrl ?? this.imageUrl,
+      date: newDate,
     );
   }
 }

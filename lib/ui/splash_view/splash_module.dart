@@ -1,7 +1,7 @@
 import 'package:fact_about_cat/bloc/splash_bloc/splash_bloc.dart';
 import 'package:fact_about_cat/bloc/splash_bloc/splash_event.dart';
 import 'package:fact_about_cat/bloc/splash_bloc/splash_state.dart';
-import 'package:fact_about_cat/ui/random_fact_view/fact_module.dart';
+import 'package:fact_about_cat/ui/fact_view/fact_module.dart';
 import 'package:fact_about_cat/ui/splash_view/splash_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,13 +17,13 @@ class SplashModule extends StatelessWidget {
       body: BlocProvider(
         create: (context) => SplashBloc(
           context.read(),
+          context.read(),
         )..add(FatchDataFromApi()),
         child: BlocConsumer<SplashBloc, SplashState>(
           listenWhen: ((previous, current) => previous is! FailureSplashState),
           listener: (_, state) {
             if (state is SuccessSplashState) {
-              Navigator.of(context)
-                  .pushReplacementNamed(RandomFactModule.route);
+              Navigator.of(context).pushReplacementNamed(FactModule.route);
             } else if (state is FailureSplashState) {
               ScaffoldMessenger.of(context)
                 ..hideCurrentSnackBar()

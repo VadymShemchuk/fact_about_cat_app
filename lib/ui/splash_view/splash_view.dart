@@ -17,14 +17,10 @@ class SplashView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Padding(
-            padding: EdgeInsets.only(
-              top: 100,
-            ),
-            child: Image(
-              image: AssetImage('assets/cat.png'),
-            ),
+          const Image(
+            image: AssetImage('assets/cat.png'),
           ),
           if (state is LoadingSplashState)
             const Padding(
