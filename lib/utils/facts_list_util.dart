@@ -14,20 +14,19 @@ class FactsListUtil {
         16,
         0,
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('Create at $date'),
+          Text('Create at: $date'),
           Padding(
             padding: const EdgeInsets.only(
-              left: 5,
+              top: 6,
+              bottom: 6,
             ),
             child: Text(fact),
           ),
           const Divider(
             color: Colors.grey,
-            indent: 16,
-            endIndent: 16,
             height: 1,
           ),
         ],
