@@ -15,8 +15,6 @@ class HiveRepository {
   }
 
   void deleteData() {
-    final model = _box.values.toList();
-    final int index = model.indexOf(model.first);
-    _box.deleteAt(index);
+    _box.deleteAt(0);
   }
 }
