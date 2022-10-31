@@ -5,9 +5,9 @@ import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 
 List<SingleChildWidget> providers = [
-  Provider<CatFactModel>(create: (_) => CatFactModel()),
+  Provider<CatsFactModel>(create: (_) => CatsFactModel()),
   Provider<HiveRepository>(create: (_) => HiveRepository()),
-  ProxyProvider<CatFactModel, ApiRepository>(
+  ProxyProvider<CatsFactModel, ApiRepository>(
       update: (
     _,
     factModel,

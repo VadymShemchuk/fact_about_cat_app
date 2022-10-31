@@ -16,7 +16,7 @@ class FactsListView extends StatelessWidget {
   });
 
   final FactsListState state;
-  final _box = Hive.box<CatFactModel>('factModel');
+  final _box = Hive.box<CatsFactModel>('factModel');
 
   @override
   Widget build(BuildContext context) {

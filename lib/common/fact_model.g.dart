@@ -6,17 +6,17 @@ part of 'fact_model.dart';
 // TypeAdapterGenerator
 // **************************************************************************
 
-class FactModelAdapter extends TypeAdapter<CatFactModel> {
+class FactModelAdapter extends TypeAdapter<CatsFactModel> {
   @override
   final int typeId = 1;
 
   @override
-  CatFactModel read(BinaryReader reader) {
+  CatsFactModel read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return CatFactModel(
+    return CatsFactModel(
       catsFact: fields[0] as String,
       imageUrl: fields[2] as String,
       date: fields[1] as String?,
@@ -24,7 +24,7 @@ class FactModelAdapter extends TypeAdapter<CatFactModel> {
   }
 
   @override
-  void write(BinaryWriter writer, CatFactModel obj) {
+  void write(BinaryWriter writer, CatsFactModel obj) {
     writer
       ..writeByte(3)
       ..writeByte(0)

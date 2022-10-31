@@ -6,13 +6,13 @@ import 'package:fact_about_cat/common/fact_model.dart';
 class ApiRepository {
   final ApiServiceFact _apiServiceFact = ApiServiceFact(Dio());
   final ApiServiceImage _apiServiceImage = ApiServiceImage(Dio());
-  final CatFactModel _factModel;
+  final CatsFactModel _factModel;
 
   ApiRepository(
     this._factModel,
   );
 
-  Future<CatFactModel> fetchFactModel() async {
+  Future<CatsFactModel> fetchFactModel() async {
     try {
       final factResponse = await _apiServiceFact.getFact();
       final imageResponse = await _apiServiceImage.getImage();

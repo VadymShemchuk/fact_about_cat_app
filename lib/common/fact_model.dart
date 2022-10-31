@@ -4,7 +4,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 part 'fact_model.g.dart';
 
 @HiveType(typeId: 1)
-class CatFactModel {
+class CatsFactModel {
   @HiveField(0)
   final String? catsFact;
 
@@ -14,18 +14,18 @@ class CatFactModel {
   @HiveField(2)
   final String? imageUrl;
 
-  CatFactModel({
+  CatsFactModel({
     this.catsFact,
     this.imageUrl,
     this.date,
   });
 
-  CatFactModel copyWith({
+  CatsFactModel copyWith({
     String? catsFact,
     String? imageUrl,
   }) {
     final newDate = RandomDateUtil.generateRandomDate();
-    return CatFactModel(
+    return CatsFactModel(
       catsFact: catsFact ?? this.catsFact,
       imageUrl: imageUrl ?? this.imageUrl,
       date: newDate,

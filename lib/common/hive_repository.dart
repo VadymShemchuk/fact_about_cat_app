@@ -3,13 +3,13 @@ import 'package:hive_flutter/hive_flutter.dart';
 
 class HiveRepository {
   HiveRepository() : super();
-  final _box = Hive.box<CatFactModel>('factModel');
+  final _box = Hive.box<CatsFactModel>('factModel');
 
-  void writeData(CatFactModel model) async {
+  void writeData(CatsFactModel model) async {
     _box.add(model);
   }
 
-  List<CatFactModel> readData() {
+  List<CatsFactModel> readData() {
     final model = _box.values.toList();
     return model;
   }
