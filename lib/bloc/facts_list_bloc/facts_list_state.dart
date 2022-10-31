@@ -3,7 +3,7 @@ import 'package:fact_about_cat/bloc/navigator_status.dart';
 import 'package:fact_about_cat/common/fact_model.dart';
 
 class FactsListState {
-  List<FactModel>? viewModel;
+  List<CatFactModel>? viewModel;
   LoadingStatus loadingStatus;
   NavigatorStatus navigatorStatus;
   int? itemsCount;
@@ -16,7 +16,7 @@ class FactsListState {
   });
 
   FactsListState copyWith({
-    List<FactModel>? newViewModel,
+    List<CatFactModel>? newViewModel,
     LoadingStatus? loadingStatus,
     NavigatorStatus? navigatorStatus,
     int? itemCount,

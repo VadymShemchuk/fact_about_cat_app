@@ -11,7 +11,7 @@ import 'package:provider/provider.dart';
 void main() async {
   await Hive.initFlutter();
   Hive.registerAdapter(FactModelAdapter());
-  await Hive.openBox<FactModel>('factModel');
+  await Hive.openBox<CatFactModel>('factModel');
 
   runApp(const MyApp());
 }
