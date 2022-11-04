@@ -27,7 +27,7 @@ class FactBloc extends Bloc<FactEvent, FactState> {
     final modelItem = modelList.last;
     emit(state.copyWith(
       imageUrl: modelItem.imageUrl,
-      catsFact: modelItem.catsFact,
+      catsFact: modelItem.catFact,
       date: modelItem.date,
       loadingStatus: Loaded(),
     ));
@@ -44,7 +44,7 @@ class FactBloc extends Bloc<FactEvent, FactState> {
     );
     final model = await _apiRepository.fetchFactModel();
     final String imageUrl = model.imageUrl!;
-    final String catsFact = model.catsFact!;
+    final String catsFact = model.catFact!;
     final String date = model.date!;
 
     _hiveRepository.writeData(model);

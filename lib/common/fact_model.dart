@@ -6,7 +6,7 @@ part 'fact_model.g.dart';
 @HiveType(typeId: 1)
 class CatsFactModel {
   @HiveField(0)
-  final String? catsFact;
+  final String? catFact;
 
   @HiveField(1)
   String? date;
@@ -15,7 +15,7 @@ class CatsFactModel {
   final String? imageUrl;
 
   CatsFactModel({
-    this.catsFact,
+    this.catFact,
     this.imageUrl,
     this.date,
   });
@@ -26,7 +26,7 @@ class CatsFactModel {
   }) {
     final newDate = RandomDateUtil.generateRandomDate();
     return CatsFactModel(
-      catsFact: catsFact ?? this.catsFact,
+      catFact: catsFact ?? this.catFact,
       imageUrl: imageUrl ?? this.imageUrl,
       date: newDate,
     );

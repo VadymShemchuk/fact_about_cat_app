@@ -52,7 +52,7 @@ class FactsListView extends StatelessWidget {
                 itemBuilder: (_, index) {
                   return FactsListUtil.buildFactsListItem(
                     state.viewModel![index].date!,
-                    state.viewModel![index].catsFact!,
+                    state.viewModel![index].catFact!,
                   );
                 }),
       ),

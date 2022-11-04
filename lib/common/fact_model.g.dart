@@ -17,7 +17,7 @@ class FactModelAdapter extends TypeAdapter<CatsFactModel> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return CatsFactModel(
-      catsFact: fields[0] as String,
+      catFact: fields[0] as String,
       imageUrl: fields[2] as String,
       date: fields[1] as String?,
     );
@@ -28,7 +28,7 @@ class FactModelAdapter extends TypeAdapter<CatsFactModel> {
     writer
       ..writeByte(3)
       ..writeByte(0)
-      ..write(obj.catsFact)
+      ..write(obj.catFact)
       ..writeByte(1)
       ..write(obj.date)
       ..writeByte(2)
